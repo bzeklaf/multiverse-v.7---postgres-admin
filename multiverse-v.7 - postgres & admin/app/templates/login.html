@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="./static/css/login.css">
+<div class="login-container">
+<div class="container h-100vh">
+	<div class="row row h-100 align-items-center justify-content-center">
+		<div class="col align-self-center">
+			<div class="card">
+				<div class="card-header text-center display-4">
+					Log-In
+				</div>
+				<div class="card-body">
+				<form method="POST" action="">
+					{{ form.hidden_tag() }}
+					<form>
+						<div class="form-group">
+							{{ form.email.label('Email') }}
+							{% if form.email.errors %}
+								{{ form.email(class="form-control is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.email.errors %}
+										<span>{{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.email(class="form-control", placeholder="Password") }}
+							{% endif %}
+						</div>
+						<div class="form-group">
+							{{ form.password.label('Password') }}
+							{% if form.password.errors %}
+								{{ form.password(class="form-control is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.password.errors %}
+										<span>{{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.password(class="form-control", placeholder="Password") }}
+							{% endif %}
+							<small><a href="{{ url_for('register') }}" , class="form-text text-muted">I do not have an account!</a></small>
+							
+						</div>
+						<div class="form-group form-check custom-control custom-checkbox">
+							{{ form.remember(type="checkbox", class="custom-control-input") }}
+							{{ form.remember.label(class="custom-control-label") }}
+						</div>
+						{{ form.submit(class="btn btn-primary btn-lg btn-block") }}
+						<small><a href="#" , class="form-text text-muted">Forgot Password?</a></small>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}
